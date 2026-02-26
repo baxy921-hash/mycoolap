@@ -1,12 +1,18 @@
 name: Build APK
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Build with Buildozer
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build APK with Buildozer
         uses: Peter-Smit/buildozer-action@v1
         with:
           workdir: .
-          
